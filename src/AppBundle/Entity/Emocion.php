@@ -48,10 +48,12 @@ class Emocion
 
     /**
      * @param string $nombre
+     * @return Emocion
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
     }
 
     /**
@@ -64,9 +66,11 @@ class Emocion
 
     /**
      * @param string $icono
+     * @return Emocion
      */
     public function setIcono($icono)
     {
         $this->icono = $icono;
+        return $this;
     }
 }

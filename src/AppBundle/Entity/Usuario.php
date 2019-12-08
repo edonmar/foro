@@ -66,10 +66,12 @@ class Usuario
 
     /**
      * @param string $nombre
+     * @return Usuario
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
     }
 
     /**
@@ -82,10 +84,12 @@ class Usuario
 
     /**
      * @param string $clave
+     * @return Usuario
      */
     public function setClave($clave)
     {
         $this->clave = $clave;
+        return $this;
     }
 
     /**
@@ -98,10 +102,12 @@ class Usuario
 
     /**
      * @param \DateTime $fechaRegistro
+     * @return Usuario
      */
     public function setFechaRegistro($fechaRegistro)
     {
         $this->fechaRegistro = $fechaRegistro;
+        return $this;
     }
 
     /**
@@ -114,10 +120,12 @@ class Usuario
 
     /**
      * @param bool $administrador
+     * @return Usuario
      */
     public function setAdministrador($administrador)
     {
         $this->administrador = $administrador;
+        return $this;
     }
 
     /**
@@ -130,9 +138,11 @@ class Usuario
 
     /**
      * @param bool $moderador
+     * @return Usuario
      */
     public function setModerador($moderador)
     {
         $this->moderador = $moderador;
+        return $this;
     }
 }

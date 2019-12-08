@@ -72,10 +72,12 @@ class Tema
 
     /**
      * @param string $titulo
+     * @return Tema
      */
     public function setTitulo($titulo)
     {
         $this->titulo = $titulo;
+        return $this;
     }
 
     /**
@@ -88,10 +90,12 @@ class Tema
 
     /**
      * @param string $texto
+     * @return Tema
      */
     public function setTexto($texto)
     {
         $this->texto = $texto;
+        return $this;
     }
 
     /**
@@ -104,10 +108,12 @@ class Tema
 
     /**
      * @param \DateTime $fechaCreacion
+     * @return Tema
      */
     public function setFechaCreacion($fechaCreacion)
     {
         $this->fechaCreacion = $fechaCreacion;
+        return $this;
     }
 
     /**
@@ -120,10 +126,12 @@ class Tema
 
     /**
      * @param bool $editado
+     * @return Tema
      */
     public function setEditado($editado)
     {
         $this->editado = $editado;
+        return $this;
     }
 
     /**
@@ -136,10 +144,12 @@ class Tema
 
     /**
      * @param bool $fijado
+     * @return Tema
      */
     public function setFijado($fijado)
     {
         $this->fijado = $fijado;
+        return $this;
     }
 
     /**
@@ -152,9 +162,11 @@ class Tema
 
     /**
      * @param bool $cerrado
+     * @return Tema
      */
     public function setCerrado($cerrado)
     {
         $this->cerrado = $cerrado;
+        return $this;
     }
 }

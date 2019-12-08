@@ -54,10 +54,12 @@ class Respuesta
 
     /**
      * @param string $texto
+     * @return Respuesta
      */
     public function setTexto($texto)
     {
         $this->texto = $texto;
+        return $this;
     }
 
     /**
@@ -70,10 +72,12 @@ class Respuesta
 
     /**
      * @param \DateTime $fechaCreacion
+     * @return Respuesta
      */
     public function setFechaCreacion($fechaCreacion)
     {
         $this->fechaCreacion = $fechaCreacion;
+        return $this;
     }
 
     /**
@@ -86,9 +90,11 @@ class Respuesta
 
     /**
      * @param bool $editada
+     * @return Respuesta
      */
     public function setEditada($editada)
     {
         $this->editada = $editada;
+        return $this;
     }
 }

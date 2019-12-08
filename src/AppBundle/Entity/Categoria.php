@@ -42,9 +42,11 @@ class Categoria
 
     /**
      * @param string $nombre
+     * @return Categoria
      */
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
     }
 }
