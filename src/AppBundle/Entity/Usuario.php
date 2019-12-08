@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -47,6 +48,20 @@ class Usuario
      * @var bool
      */
     private $moderador;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tema", mappedBy="usuario")
+     * @var Tema[]
+     */
+    private $temas;
+
+    /**
+     * Usuario constructor.
+     */
+    public function __construct()
+    {
+        $this->temas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -143,6 +158,24 @@ class Usuario
     public function setModerador($moderador)
     {
         $this->moderador = $moderador;
+        return $this;
+    }
+
+    /**
+     * @return Tema[]
+     */
+    public function getTemas()
+    {
+        return $this->temas;
+    }
+
+    /**
+     * @param Tema[] $temas
+     * @return Usuario
+     */
+    public function setTemas($temas)
+    {
+        $this->temas = $temas;
         return $this;
     }
 }

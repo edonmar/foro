@@ -55,6 +55,12 @@ class Tema
     private $cerrado;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario", inversedBy="temas")
+     * @var Usuario
+     */
+    private $usuario;
+
+    /**
      * @return int
      */
     public function getId()
@@ -167,6 +173,24 @@ class Tema
     public function setCerrado($cerrado)
     {
         $this->cerrado = $cerrado;
+        return $this;
+    }
+
+    /**
+     * @return Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @param Usuario $usuario
+     * @return Tema
+     */
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
         return $this;
     }
 }
