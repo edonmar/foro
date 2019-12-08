@@ -23,4 +23,28 @@ class Categoria
      * @var string
      */
     private $nombre;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
 }

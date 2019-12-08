@@ -29,4 +29,44 @@ class Emocion
      * @var string
      */
     private $icono;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIcono()
+    {
+        return $this->icono;
+    }
+
+    /**
+     * @param string $icono
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+    }
 }

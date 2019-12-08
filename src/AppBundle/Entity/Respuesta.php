@@ -35,4 +35,60 @@ class Respuesta
      * @var bool
      */
     private $editada;
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTexto()
+    {
+        return $this->texto;
+    }
+
+    /**
+     * @param string $texto
+     */
+    public function setTexto($texto)
+    {
+        $this->texto = $texto;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fechaCreacion;
+    }
+
+    /**
+     * @param \DateTime $fechaCreacion
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEditada()
+    {
+        return $this->editada;
+    }
+
+    /**
+     * @param bool $editada
+     */
+    public function setEditada($editada)
+    {
+        $this->editada = $editada;
+    }
 }
