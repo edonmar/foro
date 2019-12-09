@@ -56,11 +56,18 @@ class Usuario
     private $temas;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Respuesta", mappedBy="usuario")
+     * @var Respuesta[]
+     */
+    private $respuestas;
+
+    /**
      * Usuario constructor.
      */
     public function __construct()
     {
         $this->temas = new ArrayCollection();
+        $this->respuestas = new ArrayCollection();
     }
 
     /**
@@ -176,6 +183,24 @@ class Usuario
     public function setTemas($temas)
     {
         $this->temas = $temas;
+        return $this;
+    }
+
+    /**
+     * @return Respuesta[]
+     */
+    public function getRespuestas()
+    {
+        return $this->respuestas;
+    }
+
+    /**
+     * @param Respuesta[] $respuestas
+     * @return Usuario
+     */
+    public function setRespuestas($respuestas)
+    {
+        $this->respuestas = $respuestas;
         return $this;
     }
 }
