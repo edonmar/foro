@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -59,6 +60,20 @@ class Tema
      * @var Usuario
      */
     private $usuario;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Respuesta", mappedBy="tema")
+     * @var Respuesta[]
+     */
+    private $respuestas;
+
+    /**
+     * Tema constructor.
+     */
+    public function __construct()
+    {
+        $this->respuestas = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -191,6 +206,24 @@ class Tema
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
+        return $this;
+    }
+
+    /**
+     * @return Respuesta[]
+     */
+    public function getRespuestas()
+    {
+        return $this->respuestas;
+    }
+
+    /**
+     * @param Respuesta[] $respuestas
+     * @return Tema
+     */
+    public function setRespuestas($respuestas)
+    {
+        $this->respuestas = $respuestas;
         return $this;
     }
 }

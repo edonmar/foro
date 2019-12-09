@@ -43,6 +43,12 @@ class Respuesta
     private $usuario;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tema", inversedBy="respuestas")
+     * @var Tema
+     */
+    private $tema;
+
+    /**
      * @return int
      */
     public function getId()
@@ -119,6 +125,24 @@ class Respuesta
     public function setUsuario($usuario)
     {
         $this->usuario = $usuario;
+        return $this;
+    }
+
+    /**
+     * @return Tema
+     */
+    public function getTema()
+    {
+        return $this->tema;
+    }
+
+    /**
+     * @param Tema $tema
+     * @return Respuesta
+     */
+    public function setTema($tema)
+    {
+        $this->tema = $tema;
         return $this;
     }
 }
