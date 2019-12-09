@@ -74,11 +74,18 @@ class Tema
     private $categoria;
 
     /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Emocion")
+     * @var Emocion[]
+     */
+    private $emociones;
+
+    /**
      * Tema constructor.
      */
     public function __construct()
     {
         $this->respuestas = new ArrayCollection();
+        $this->emociones = new ArrayCollection();
     }
 
     /**
@@ -248,6 +255,24 @@ class Tema
     public function setCategoria($categoria)
     {
         $this->categoria = $categoria;
+        return $this;
+    }
+
+    /**
+     * @return Emocion[]
+     */
+    public function getEmociones()
+    {
+        return $this->emociones;
+    }
+
+    /**
+     * @param Emocion[] $emociones
+     * @return Tema
+     */
+    public function setEmociones($emociones)
+    {
+        $this->emociones = $emociones;
         return $this;
     }
 }
