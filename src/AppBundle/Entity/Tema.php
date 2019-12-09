@@ -68,6 +68,12 @@ class Tema
     private $respuestas;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categoria", inversedBy="temas")
+     * @var Categoria
+     */
+    private $categoria;
+
+    /**
      * Tema constructor.
      */
     public function __construct()
@@ -224,6 +230,24 @@ class Tema
     public function setRespuestas($respuestas)
     {
         $this->respuestas = $respuestas;
+        return $this;
+    }
+
+    /**
+     * @return Categoria
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * @param Categoria $categoria
+     * @return Tema
+     */
+    public function setCategoria($categoria)
+    {
+        $this->categoria = $categoria;
         return $this;
     }
 }

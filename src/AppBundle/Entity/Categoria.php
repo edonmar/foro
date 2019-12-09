@@ -25,6 +25,12 @@ class Categoria
     private $nombre;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tema", mappedBy="categoria")
+     * @var Tema[]
+     */
+    private $temas;
+
+    /**
      * @return int
      */
     public function getId()
@@ -47,6 +53,24 @@ class Categoria
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
+        return $this;
+    }
+
+    /**
+     * @return Tema[]
+     */
+    public function getTemas()
+    {
+        return $this->temas;
+    }
+
+    /**
+     * @param Tema[] $temas
+     * @return Categoria
+     */
+    public function setTemas($temas)
+    {
+        $this->temas = $temas;
         return $this;
     }
 }
