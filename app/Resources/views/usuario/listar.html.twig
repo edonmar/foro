@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Listado de usuarios
+{% endblock %}
+
+{% block content %}
+    <h1>Listado de usuarios</h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Rol</th>
+            <th>Fecha de registro</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.nombre }}</td>
+                {% if usuario.administrador == true %}
+                    <td>Administrador</td>
+                {% elseif usuario.moderador == true %}
+                        <td>Moderador</td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td>{{ usuario.fechaRegistro|date('d/m/Y') }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
