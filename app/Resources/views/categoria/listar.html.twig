@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Listado de categorías
+{% endblock %}
+
+{% block content %}
+    <h1>Listado de categorías</h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for categoria in categorias %}
+            <tr>
+                <td>{{ categoria.nombre }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
