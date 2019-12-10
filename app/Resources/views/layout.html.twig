@@ -3,14 +3,15 @@
 {% block body %}
     <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark">
         <a class="navbar-brand" href="{{ path('portada') }}"><i class="fas fa-comments"></i> Foro</a>
+        {% set nombre = app.request.get('_route') %}
         <ul class="navbar-nav">
-            <li>
+            <li{% if nombre == 'portada' %} class="active"{% endif %}>
                 <a class="nav-link" href="{{ path('portada') }}"><i class="fas fa-home"></i> Portada</a>
             </li>
-            <li>
+            <li{% if nombre starts with 'categoria' %} class="active"{% endif %}>
                 <a class="nav-link" href="{{ path('categoria_listar') }}"><i class="fas fa-bars"></i> Categorías</a>
             </li>
-            <li>
+            <li{% if nombre starts with 'usuario' %} class="active"{% endif %}>
                 <a class="nav-link" href="{{ path('usuario_listar') }}"><i class="fas fa-user-friends"></i> Usuarios</a>
             </li>
         </ul>
