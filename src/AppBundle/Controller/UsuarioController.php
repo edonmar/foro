@@ -13,7 +13,7 @@ class UsuarioController extends Controller
      */
     public function indexAction(UsuarioRepository $usuarioRepository)
     {
-        $usuarios = $usuarioRepository->findAll();
+        $usuarios = $usuarioRepository->findTodosOrdenados();
 
         return $this->render('usuario/listar.html.twig', [
             'usuarios' => $usuarios

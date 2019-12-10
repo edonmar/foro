@@ -12,4 +12,14 @@ class UsuarioRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Usuario::class);
     }
+
+    public function findTodosOrdenados()
+    {
+        return $this->createQueryBuilder('u')
+            ->addOrderBy('u.administrador', 'desc')
+            ->addOrderBy('u.moderador', 'desc')
+            ->addOrderBy('u.nombre')
+            ->getQuery()
+            ->getResult();
+    }
 }
