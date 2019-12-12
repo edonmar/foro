@@ -17,6 +17,7 @@
         <tbody>
         {% for tema in temas %}
             <tr>
+                <td><a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></td>
                 <td>{{ tema.titulo }}</td>
                 <td>{{ tema.usuario.nombre }}</td>
                 <td>{{ tema.fechaCreacion|date('d/m/Y') }}</td>

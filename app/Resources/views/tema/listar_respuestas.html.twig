@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    {{ tema.titulo }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ tema.categoria.nombre }} » {{ tema.titulo }}</h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Texto</th>
+            <th>Creado por</th>
+            <th>Fecha de creación</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for respuesta in respuestas %}
+            <tr>
+                <td>{{ respuesta.texto }}</td>
+                <td>{{ tema.usuario.nombre }}</td>
+                <td>{{ respuesta.fechaCreacion|date('d/m/Y') }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">No hay respuestas a este tema</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}" class="btn btn-info">
+            <i class="fas fa-arrow-left"></i> Volver a la categoría {{ tema.categoria.nombre }}
+        </a>
+    </p>
+{% endblock %}
+
