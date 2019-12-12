@@ -32,7 +32,7 @@ class Tema
     private $texto;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      * @var \DateTime
      */
     private $fechaCreacion;
