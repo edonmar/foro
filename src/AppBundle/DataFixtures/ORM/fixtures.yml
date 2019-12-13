@@ -1,0 +1,49 @@
+AppBundle\Entity\Usuario:
+  administrador:
+    nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
+    clave: <password()>
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: true
+    moderador: false
+
+  moderador_{1..3}:
+    nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
+    clave: <password()>
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: false
+    moderador: true
+
+  usuario_{1..20}:
+    nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
+    clave: <password()>
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: false
+    moderador: false
+
+AppBundle\Entity\Categoria:
+  categoria_{1..5}:
+    nombre: <sentence($nbWords = 2, $variableNbWords = true)>
+
+AppBundle\Entity\Emocion:
+  emocion_{1..5}:
+    nombre: <word()>
+    icono: <word()>
+
+AppBundle\Entity\Tema:
+  tema_{1..40}:
+    titulo: <sentence($nbWords = 6, $variableNbWords = true)>
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editado: <boolean(15)>
+    fijado: <boolean(20)>
+    cerrado: <boolean(15)>
+    usuario: "@usuario*"
+    categoria: "@categoria*"
+
+AppBundle\Entity\Respuesta:
+  respuesta_{1..300}:
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editada: <boolean(15)>
+    tema: "@tema*"
+    usuario: "@usuario*"
