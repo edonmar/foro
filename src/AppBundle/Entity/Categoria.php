@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +30,14 @@ class Categoria
      * @var Tema[]
      */
     private $temas;
+
+    /**
+     * Categoria constructor.
+     */
+    public function __construct()
+    {
+        $this->temas = new ArrayCollection();
+    }
 
     /**
      * @return int
