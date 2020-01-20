@@ -5,24 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ tema.categoria.nombre }} » {{ tema.titulo }}</h1>
-    <table class="table table-bordered table-striped table-hover">
-        <thead>
-        <tr>
-            <th>Texto</th>
-            <th>Creado por</th>
-            <th>Fecha de creación</th>
-        </tr>
-        </thead>
+    <h1><a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a> » {{ tema.titulo }}</h1>
+    <div class="jumbotron">
+        <span class="h3">{{ tema.usuario.nombre }}</span>
+        <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+        <hr/>
+        <p>{{ tema.texto }}</p>
+    </div>
+    <table class="table table-bordered table-striped">
         <tbody>
-        <p>
-            {{ tema.texto }}
-        </p>
         {% for respuesta in respuestas %}
             <tr>
-                <td>{{ respuesta.texto }}</td>
+                <td colspan="2">{{ respuesta.fechaCreacion|date('d/m/Y h:m') }}</td>
+            </tr>
+            <tr>
                 <td>{{ tema.usuario.nombre }}</td>
-                <td>{{ respuesta.fechaCreacion|date('d/m/Y') }}</td>
+                <td>{{ respuesta.texto }}</td>
             </tr>
         {% else %}
             <tr>
