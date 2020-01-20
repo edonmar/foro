@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark">
+    <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark mb-3">
         <a class="navbar-brand" href="{{ path('portada') }}"><i class="fas fa-comments"></i> Foro</a>
         {% set nombre = app.request.get('_route') %}
         <ul class="navbar-nav">
