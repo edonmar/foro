@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Categoria;
 use AppBundle\Repository\CategoriaRepository;
 use AppBundle\Repository\TemaRepository;
+use AppBundle\Repository\RespuestaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -25,13 +26,19 @@ class CategoriaController extends Controller
     /**
      * @Route("/categoria/temas/{id}", name="categoria_temas_listar")
      */
-    public function temasAction(TemaRepository $temaRepository, Categoria $categoria)
+    public function temasAction(TemaRepository $temaRepository, RespuestaRepository $respuestaRepository, Categoria $categoria)
     {
         $temas = $temaRepository->findByCategoria($categoria);
 
+        $numRespuestas = array();
+        foreach ($temas as $tema) {
+            $numRespuestas[] = $respuestaRepository->contarPorTema($tema);
+        }
+
         return $this->render('categoria/listar_temas.html.twig', [
             'temas' => $temas,
-            'categoria' => $categoria
+            'categoria' => $categoria,
+            'numRespuestas' => $numRespuestas
         ]);
     }
 }

@@ -23,4 +23,13 @@ class RespuestaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function contarPorTema(Tema $tema){
+        return $this->createQueryBuilder('r')
+            ->select('count(r)')
+            ->where('r.tema = :tema')
+            ->setParameter('tema', $tema)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
