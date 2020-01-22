@@ -14,12 +14,26 @@ class CategoriaController extends Controller
     /**
      * @Route("/categorias", name="categoria_listar")
      */
-    public function indexAction(CategoriaRepository $categoriaRepository)
+    public function indexAction(CategoriaRepository $categoriaRepository, TemaRepository $temaRepository, RespuestaRepository $respuestaRepository)
     {
         $categorias = $categoriaRepository->findAll();
 
+        $numTemas = array();
+        $numRespuestas = array();
+        foreach ($categorias as $categoria){
+            $sum = 0;
+            $temas = $temaRepository->findByCategoria($categoria);
+            $numTemas[] = $temaRepository->contarPorCategoria($categoria);
+            foreach ($temas as $tema){
+                $sum += $respuestaRepository->contarPorTema($tema);
+            }
+            $numRespuestas[] = $sum;
+        }
+
         return $this->render('categoria/listar.html.twig', [
-            'categorias' => $categorias
+            'categorias' => $categorias,
+            'numTemas' => $numTemas,
+            'numRespuestas' => $numRespuestas
         ]);
     }
 

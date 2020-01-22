@@ -24,4 +24,13 @@ class TemaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function contarPorCategoria(Categoria $categoria){
+        return $this->createQueryBuilder('t')
+            ->select('count(t)')
+            ->where('t.categoria = :categoria')
+            ->setParameter('categoria', $categoria)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }
