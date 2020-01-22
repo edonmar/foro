@@ -31,14 +31,17 @@ class CategoriaController extends Controller
         $temas = $temaRepository->findByCategoria($categoria);
 
         $numRespuestas = array();
+        $ultimaRespuesta = array();
         foreach ($temas as $tema) {
             $numRespuestas[] = $respuestaRepository->contarPorTema($tema);
+            $ultimaRespuesta[] = $respuestaRepository->ultimaRespuesta($tema);
         }
 
         return $this->render('categoria/listar_temas.html.twig', [
             'temas' => $temas,
             'categoria' => $categoria,
-            'numRespuestas' => $numRespuestas
+            'numRespuestas' => $numRespuestas,
+            'ultimaRespuesta' => $ultimaRespuesta
         ]);
     }
 }

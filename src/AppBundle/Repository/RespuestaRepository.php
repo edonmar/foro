@@ -32,4 +32,15 @@ class RespuestaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function ultimaRespuesta(Tema $tema){
+        return $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.tema = :tema')
+            ->setParameter('tema', $tema)
+            ->orderBy('r.id', 'desc')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 }

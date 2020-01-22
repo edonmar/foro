@@ -13,6 +13,8 @@
             <th>Número de respuestas</th>
             <th>Creado por</th>
             <th>Fecha de creación</th>
+            <th>Autor de la última respuesta</th>
+            <th>Fecha de la última respuesta</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +24,8 @@
                 <td>{{ numRespuestas[loop.index - 1] }}</td>
                 <td>{{ tema.usuario.nombre }}</td>
                 <td>{{ tema.fechaCreacion|date('d/m/Y') }}</td>
+                <td>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</td>
+                <td>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y') }}</td>
             </tr>
         {% else %}
             <tr>
