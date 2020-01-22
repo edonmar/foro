@@ -12,23 +12,27 @@
         <hr/>
         <p>{{ tema.texto }}</p>
     </div>
-    <table class="table table-bordered table-striped">
-        <tbody>
-        {% for respuesta in respuestas %}
+    {% for respuesta in respuestas %}
+        <table class="table table-bordered table-striped">
+            <tbody>
             <tr>
                 <td colspan="2">{{ respuesta.fechaCreacion|date('d/m/Y h:m') }}</td>
             </tr>
             <tr>
-                <td>{{ tema.usuario.nombre }}</td>
-                <td>{{ respuesta.texto }}</td>
+                <td style="width: 15%;">{{ respuesta.usuario.nombre }}</td>
+                <td style="width: 85%;">{{ respuesta.texto }}</td>
             </tr>
-        {% else %}
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-bordered table-striped">
+            <tbody>
             <tr>
                 <td colspan="2">No hay respuestas a este tema</td>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    {% endfor %}
     <p>
         <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}" class="btn btn-info">
             <i class="fas fa-arrow-left"></i> Volver a la categoría {{ tema.categoria.nombre }}

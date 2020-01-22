@@ -9,23 +9,25 @@
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
-            <th>Título</th>
-            <th>Número de respuestas</th>
-            <th>Creado por</th>
-            <th>Fecha de creación</th>
-            <th>Autor de la última respuesta</th>
-            <th>Fecha de la última respuesta</th>
+            <th class="align-middle">Título</th>
+            <th class="align-middle">Número de respuestas</th>
+            <th class="align-middle">Creado por</th>
+            <th class="align-middle">Última respuesta</th>
         </tr>
         </thead>
         <tbody>
         {% for tema in temas %}
             <tr>
-                <td><a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></td>
-                <td>{{ numRespuestas[loop.index - 1] }}</td>
-                <td>{{ tema.usuario.nombre }}</td>
-                <td>{{ tema.fechaCreacion|date('d/m/Y') }}</td>
-                <td>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</td>
-                <td>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y') }}</td>
+                <td class="align-middle"><a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></td>
+                <td class="align-middle text-center">{{ numRespuestas[loop.index - 1] }}</td>
+                <td>
+                    <p>{{ tema.usuario.nombre }}</p>
+                    <p>{{ tema.fechaCreacion|date('d/m/Y h:m') }}</p>
+                </td>
+                <td>
+                    <p>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</p>
+                    <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
+                </td>
             </tr>
         {% else %}
             <tr>
