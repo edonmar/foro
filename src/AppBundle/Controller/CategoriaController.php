@@ -62,6 +62,18 @@ class CategoriaController extends Controller
     }
 
     /**
+     * @Route("/categoria/nueva", name="categoria_nueva", methods={"GET", "POST"})
+     */
+    public function nuevaAction(Request $request)
+    {
+        $nuevaCategoria = new Categoria();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($nuevaCategoria);
+
+        return $this->formAction($request, $nuevaCategoria);
+    }
+
+    /**
      * @Route("/categoria/{id}", name="categoria_form", methods={"GET", "POST"})
      */
     public function formAction(Request $request, Categoria $categoria)
