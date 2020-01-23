@@ -97,4 +97,27 @@ class CategoriaController extends Controller
             'categoria' => $categoria
         ]);
     }
+
+    /**
+     * @Route("/categoria/eliminar/{id}", name="categoria_eliminar", methods={"GET", "POST"})
+     */
+    public function eliminarAction(Request $request, Categoria $categoria)
+    {
+        if ($request->getMethod() == 'POST') {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($categoria);
+                $em->flush();
+                $this->addFlash('success', 'Categoría eliminada con éxito');
+                return $this->redirectToRoute('categoria_listar');
+            }
+            catch (\Exception $e) {
+                $this->addFlash('error', 'Ha ocurrido un error al eliminar la categoría. Puede que no se pueda eliminar porque tiene contenido.');
+                return $this->redirectToRoute('categoria_form', ['id' => $categoria->getId()]);
+            }
+        }
+        return $this->render('categoria/eliminar.html.twig', [
+            'categoria' => $categoria
+        ]);
+    }
 }

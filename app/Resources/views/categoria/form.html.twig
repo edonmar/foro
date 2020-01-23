@@ -16,6 +16,9 @@
     {{ form_widget(form) }}
     <a href="{{ path('categoria_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver al listado</a>
     <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar cambios</button>
+    {% if categoria.id %}
+        <a href="{{ path('categoria_eliminar', {'id': categoria.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar categoría</a>
+    {% endif %}
     {{ form_end(form) }}
 {% endblock %}
 
