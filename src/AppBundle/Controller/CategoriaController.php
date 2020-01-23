@@ -73,10 +73,11 @@ class CategoriaController extends Controller
             try {
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
+                $this->addFlash('success', 'Cambios en la categoría guardados con éxito');
                 return $this->redirectToRoute('categoria_listar');
             }
             catch(\Exception $e) {
-
+                $this->addFlash('error', 'Ha ocurrido un error al guardar los cambios');
             }
         }
         return $this->render('categoria/form.html.twig', [
