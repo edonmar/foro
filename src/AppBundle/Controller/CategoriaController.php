@@ -3,10 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Categoria;
+use AppBundle\Form\Type\CategoriaType;
 use AppBundle\Repository\CategoriaRepository;
 use AppBundle\Repository\TemaRepository;
 use AppBundle\Repository\RespuestaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CategoriaController extends Controller
@@ -56,6 +58,30 @@ class CategoriaController extends Controller
             'categoria' => $categoria,
             'numRespuestas' => $numRespuestas,
             'ultimaRespuesta' => $ultimaRespuesta
+        ]);
+    }
+
+    /**
+     * @Route("/categoria/{id}", name="categoria_form", methods={"GET", "POST"})
+     */
+    public function formAction(Request $request, Categoria $categoria)
+    {
+        $form = $this->createForm(CategoriaType::class, $categoria);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            try {
+                $em = $this->getDoctrine()->getManager();
+                $em->flush();
+                return $this->redirectToRoute('categoria_listar');
+            }
+            catch(\Exception $e) {
+
+            }
+        }
+        return $this->render('categoria/form.html.twig', [
+            'form' => $form->createView(),
+            'categoria' => $categoria
         ]);
     }
 }

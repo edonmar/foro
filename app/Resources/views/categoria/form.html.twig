@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Datos de la categoría
+{% endblock %}
+
+{% block content %}
+    <h1>Categoría {{ categoria.nombre }}</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <a href="{{ path('categoria_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver al listado</a>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar cambios</button>
+    {{ form_end(form) }}
+{% endblock %}
+
