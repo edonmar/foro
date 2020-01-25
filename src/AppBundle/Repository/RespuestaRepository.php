@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Respuesta;
 use AppBundle\Entity\Tema;
+use AppBundle\Entity\Usuario;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -24,11 +25,31 @@ class RespuestaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByUsuario(Usuario $usuario)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r')
+            ->where('r.usuario = :usuario')
+            ->setParameter('usuario', $usuario)
+            ->orderBy('r.fechaCreacion', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function contarPorTema(Tema $tema){
         return $this->createQueryBuilder('r')
             ->select('count(r)')
             ->where('r.tema = :tema')
             ->setParameter('tema', $tema)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function contarPorUsuario(Usuario $usuario){
+        return $this->createQueryBuilder('r')
+            ->select('count(r)')
+            ->where('r.usuario = :usuario')
+            ->setParameter('usuario', $usuario)
             ->getQuery()
             ->getSingleScalarResult();
     }

@@ -1,0 +1,78 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Detalles de {{ usuario.nombre }}
+{% endblock %}
+
+{% block content %}
+    <h1>Detalles de {{ usuario.nombre }}</h1>
+    <div class="jumbotron">
+        <p>Nombre: {{ usuario.nombre }}</p>
+        <p>Fecha de registro: {{ usuario.fechaRegistro|date('d/m/Y h:m') }}</p>
+        <p>
+            Rol:
+            {% if usuario.administrador == true %}
+                Administrador
+            {% elseif usuario.moderador == true %}
+                Moderador
+            {% else %}
+                Usuario normal
+            {% endif %}
+        </p>
+        <p>Temas creados: {{ temas|length }}</p>
+        <p>Respuestas escritas: {{ respuestas|length }}</p>
+    </div>
+    <h2 class="mt-5">Temas creados por {{ usuario.nombre }}</h2>
+    {% for tema in temas %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <span>
+                        <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a>
+                         >>
+                        <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></span>
+                    <span class="float-right">En la fecha: {{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ tema.texto }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">No ha creado ningún tema</td>
+            </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+    <h2 class="mt-5">Respuestas de {{ usuario.nombre }}</h2>
+    {% for respuesta in respuestas %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <span>En el tema: <a href="{{ path('tema_respuestas_listar', {'id': respuesta.tema.id}) }}">{{ respuesta.tema.titulo }}</a></span>
+                    <span class="float-right">En la fecha: {{ respuesta.fechaCreacion|date('d/m/Y h:m') }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>{{ respuesta.texto }}</td>
+            </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">No ha escrito ninguna respuesta</td>
+            </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+{% endblock %}

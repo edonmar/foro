@@ -21,11 +21,15 @@
                 <td class="align-middle"><a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></td>
                 <td class="align-middle text-center">{{ numRespuestas[loop.index - 1] }}</td>
                 <td>
-                    <p>{{ tema.usuario.nombre }}</p>
+                    <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">
+                        <p>{{ tema.usuario.nombre }}</p>
+                    </a>
                     <p>{{ tema.fechaCreacion|date('d/m/Y h:m') }}</p>
                 </td>
                 <td>
-                    <p>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</p>
+                    <a href="{{ path('usuario_detalles', {'id': ultimaRespuesta[loop.index - 1][0].usuario.id}) }}">
+                        <p>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</p>
+                    </a>
                     <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
                 </td>
             </tr>

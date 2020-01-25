@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Tema;
 use AppBundle\Entity\Categoria;
+use AppBundle\Entity\Usuario;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -25,11 +26,31 @@ class TemaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByUsuario(Usuario $usuario)
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t')
+            ->where('t.usuario = :usuario')
+            ->setParameter('usuario', $usuario)
+            ->orderBy('t.fechaCreacion', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function contarPorCategoria(Categoria $categoria){
         return $this->createQueryBuilder('t')
             ->select('count(t)')
             ->where('t.categoria = :categoria')
             ->setParameter('categoria', $categoria)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+    public function contarPorUsuario(Usuario $usuario){
+        return $this->createQueryBuilder('t')
+            ->select('count(t)')
+            ->where('t.usuario = :usuario')
+            ->setParameter('usuario', $usuario)
             ->getQuery()
             ->getSingleScalarResult();
     }
