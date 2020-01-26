@@ -62,7 +62,12 @@
                 </td>
             </tr>
             <tr>
-                <td>{{ respuesta.texto }}</td>
+                <td>
+                    <p>{{ respuesta.texto }}</p>
+                    {% if respuesta.editada == true %}
+                        <p class="float-right text-secondary">Editada</p>
+                    {% endif %}
+                </td>
             </tr>
             </tbody>
         </table>
