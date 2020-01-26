@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Detalles de {{ usuario.nombre }}</h1>
+    <h1>Detalles de {{ usuario.nombre }} <a class="btn btn-success" href="{{ path('usuario_form', {'id': usuario.id}) }}">Editar</a></h1>
     <div class="jumbotron">
         <p>Nombre: {{ usuario.nombre }}</p>
-        <p>Fecha de registro: {{ usuario.fechaRegistro|date('d/m/Y h:m') }}</p>
+        <p>Fecha de registro: {{ usuario.fechaRegistro|date('d/m/Y') }}</p>
         <p>
             Rol:
             {% if usuario.administrador == true %}

@@ -70,6 +70,11 @@ class Usuario
         $this->respuestas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */
