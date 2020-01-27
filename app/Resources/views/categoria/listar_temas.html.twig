@@ -26,12 +26,16 @@
                     </a>
                     <p>{{ tema.fechaCreacion|date('d/m/Y h:m') }}</p>
                 </td>
-                <td>
-                    <a href="{{ path('usuario_detalles', {'id': ultimaRespuesta[loop.index - 1][0].usuario.id}) }}">
-                        <p>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</p>
-                    </a>
-                    <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
-                </td>
+                {% if ultimaRespuesta[loop.index - 1]|length != 0 %}
+                    <td>
+                        <a href="{{ path('usuario_detalles', {'id': ultimaRespuesta[loop.index - 1][0].usuario.id}) }}">
+                            <p>{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</p>
+                        </a>
+                        <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
+                    </td>
+                {% else %}
+                    <td class="align-middle">No hay respuestas</td>
+                {% endif %}
             </tr>
         {% else %}
             <tr>
