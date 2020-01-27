@@ -25,9 +25,25 @@ AppBundle\Entity\Categoria:
     nombre: <sentence($nbWords = 2, $variableNbWords = true)>
 
 AppBundle\Entity\Emocion:
-  emocion_{1..5}:
-    nombre: <word()>
-    icono: <word()>
+  emocion_1:
+    nombre: 'Risa'
+    icono: 'fa fa-laugh-squint'
+
+  emocion_2:
+    nombre: 'Tristeza'
+    icono: 'fa fa-sad-tear'
+
+  emocion_3:
+    nombre: 'Sorpresa'
+    icono: 'fa fa-surprise'
+
+  emocion_4:
+    nombre: 'Enfado'
+    icono: 'fa fa-angry'
+
+  emocion_5:
+    nombre: 'Pregunta'
+    icono: 'fa fa-question-circle'
 
 AppBundle\Entity\Tema:
   tema_{1..40}:
@@ -39,6 +55,7 @@ AppBundle\Entity\Tema:
     cerrado: <boolean(15)>
     usuario: "@usuario*"
     categoria: "@categoria*"
+    emociones: '2x @emocion*'
 
 AppBundle\Entity\Respuesta:
   respuesta_{1..300}:
