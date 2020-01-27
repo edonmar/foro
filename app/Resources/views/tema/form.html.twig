@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Datos del tema
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if tema.id %}
+            Modificar tema
+        {% else %}
+            Nuevo tema
+        {% endif %}
+    </h1>
+    {{ form_start(formulario) }}
+    {{ form_widget(formulario) }}
+    <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver a la categoría</a>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar cambios</button>
+    {% if tema.id %}
+        <a href="{{ path('tema_eliminar', {'id': tema.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar tema</a>
+    {% endif %}
+    {{ form_end(formulario) }}
+{% endblock %}
+
+

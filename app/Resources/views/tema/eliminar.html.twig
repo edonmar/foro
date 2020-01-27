@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Eliminar tema
+{% endblock %}
+
+{% block content %}
+    <h1>Eliminar tema</h1>
+
+    <div class="alert alert-warning">
+        ¿Seguro que desea eliminar el tema? Esta operación no se puede deshacer.
+    </div>
+
+    <form method="post">
+        <a href="{{ path('tema_form', {'id': tema.id}) }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver al tema</a>
+        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar el tema</button>
+    </form>
+{% endblock %}
+
+

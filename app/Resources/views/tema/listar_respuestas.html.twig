@@ -11,9 +11,15 @@
             <span class="h3">{{ tema.usuario.nombre }}</span>
         </a>
         <span class="ml-3">Aportes: {{ numAportesAutorTema }}</span>
-        <span class="float-right h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+        <span class="float-right">
+            <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+            <span class="ml-3"><a class="btn btn-success" href="{{ path('tema_form', {'id': tema.id}) }}">Editar</a></span>
+        </span>
         <hr/>
         <p>{{ tema.texto }}</p>
+        {% if tema.editado == true %}
+            <p class="float-right text-secondary">Editado</p>
+        {% endif %}
     </div>
     <div class="mb-4">
         <a href="{{ path('respuesta_nueva', {'tema': tema.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva respuesta</a>
