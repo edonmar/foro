@@ -5,6 +5,7 @@ namespace AppBundle\Repository;
 use AppBundle\Entity\Tema;
 use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Usuario;
+use AppBundle\Entity\Emocion;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -32,6 +33,18 @@ class TemaRepository extends ServiceEntityRepository
             ->select('t')
             ->where('t.usuario = :usuario')
             ->setParameter('usuario', $usuario)
+            ->orderBy('t.fechaCreacion', 'desc')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByEmocion(Emocion $emocion)
+    {
+        return $this->createQueryBuilder('t')
+            ->select('t')
+            ->innerJoin('t.emociones', 'e')
+            ->where('e.id = :emocion')
+            ->setParameter('emocion', $emocion)
             ->orderBy('t.fechaCreacion', 'desc')
             ->getQuery()
             ->getResult();

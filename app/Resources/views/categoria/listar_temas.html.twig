@@ -22,7 +22,9 @@
                     <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>
                     <p>
                         {% for emocion in tema.emociones %}
-                            <i class="{{ emocion.icono }}"></i>
+                            <a href="{{ path('emocion_temas_listar', {'id': emocion.id}) }}">
+                                <i class="{{ emocion.icono }}"></i>
+                            </a>
                         {% endfor %}
                     </p>
                 </td>

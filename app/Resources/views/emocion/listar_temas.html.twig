@@ -1,0 +1,60 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Listado de temas con la emoción {{ emocion.nombre }}
+{% endblock %}
+
+{% block content %}
+    <h1>Listado de temas con la emoción {{ emocion.nombre }} <i class="{{ emocion.icono }}"></i></h1>
+    {% for tema in temas %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">
+                    <p>
+                        <span>
+                            <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a>
+                             >>
+                            <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>
+                        </span>
+                    </p>
+                    {% if tema.emociones|length > 0 %}
+                        <span>
+                            {% for emocion in tema.emociones %}
+                                <a href="{{ path('emocion_temas_listar', {'id': emocion.id}) }}">
+                                    <i class="{{ emocion.icono }}"></i>
+                                </a>
+                            {% endfor %}
+                        </span>
+                    {% endif %}
+                    <span class="float-right">
+                        Por
+                        <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">{{ tema.usuario.nombre }}</a>
+                        en la fecha
+                        {{ tema.fechaCreacion|date('d/m/Y h:m') }}
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ tema.texto }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    {% else %}
+        <table class="table table-bordered table-striped">
+            <tbody>
+            <tr>
+                <td colspan="2">No hay ningún tema con esta emoción</td>
+            </tr>
+            </tbody>
+        </table>
+    {% endfor %}
+    <p>
+        <a href="{{ path('emocion_listar') }}" class="btn btn-info">
+            <i class="fas fa-arrow-left"></i> Volver al listado de emociones
+        </a>
+    </p>
+{% endblock %}
+

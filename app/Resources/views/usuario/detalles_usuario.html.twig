@@ -35,7 +35,9 @@
                     <span class="float-right">En la fecha: {{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
                     <p>
                         {% for emocion in tema.emociones %}
-                            <i class="{{ emocion.icono }}"></i>
+                            <a href="{{ path('emocion_temas_listar', {'id': emocion.id}) }}">
+                                <i class="{{ emocion.icono }}"></i>
+                            </a>
                         {% endfor %}
                     </p>
                 </td>

@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Emocion;
 use AppBundle\Form\Type\EmocionType;
 use AppBundle\Repository\EmocionRepository;
+use AppBundle\Repository\TemaRepository;
+use AppBundle\Repository\RespuestaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,6 +22,28 @@ class EmocionController extends Controller
 
         return $this->render('emocion/listar.html.twig', [
             'emociones' => $emociones
+        ]);
+    }
+
+    /**
+     * @Route("/emocion/temas/{id}", name="emocion_temas_listar")
+     */
+    public function temasAction(TemaRepository $temaRepository, RespuestaRepository $respuestaRepository, Emocion $emocion)
+    {
+        $temas = $temaRepository->findByEmocion($emocion);
+
+        $numRespuestas = array();
+        $ultimaRespuesta = array();
+        foreach ($temas as $tema) {
+            $numRespuestas[] = $respuestaRepository->contarPorTema($tema);
+            $ultimaRespuesta[] = $respuestaRepository->ultimaRespuesta($tema);
+        }
+
+        return $this->render('emocion/listar_temas.html.twig', [
+            'temas' => $temas,
+            'emocion' => $emocion,
+            'numRespuestas' => $numRespuestas,
+            'ultimaRespuesta' => $ultimaRespuesta
         ]);
     }
 
