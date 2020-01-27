@@ -6,6 +6,13 @@
 
 {% block content %}
     <h1><a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a> » {{ tema.titulo }}</h1>
+    {% if tema.emociones|length > 0 %}
+        <h2>
+            {% for emocion in tema.emociones %}
+                <i class="{{ emocion.icono }}"></i>
+            {% endfor %}
+        </h2>
+    {% endif %}
     <div class="jumbotron">
         <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">
             <span class="h3">{{ tema.usuario.nombre }}</span>

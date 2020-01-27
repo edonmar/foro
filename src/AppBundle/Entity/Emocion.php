@@ -30,6 +30,11 @@ class Emocion
      */
     private $icono;
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */

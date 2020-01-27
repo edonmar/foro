@@ -33,6 +33,11 @@
                          >>
                         <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></span>
                     <span class="float-right">En la fecha: {{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+                    <p>
+                        {% for emocion in tema.emociones %}
+                            <i class="{{ emocion.icono }}"></i>
+                        {% endfor %}
+                    </p>
                 </td>
             </tr>
             <tr>

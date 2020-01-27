@@ -4,6 +4,7 @@ namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Tema;
 use AppBundle\Entity\Usuario;
+use AppBundle\Entity\Emocion;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -22,6 +23,12 @@ class TemaType extends AbstractType
             ])
             ->add('texto', TextareaType::class, [
                 'label' => 'Texto'
+            ])
+            ->add('emociones', EntityType::class, [
+                'label' => 'Emociones asociadas a este tema',
+                'class' => Emocion::class,
+                'multiple' => true,
+                'expanded' => true
             ])
             ->add('fijado', CheckboxType::class, [
                 'label' => '¿Tema fijado?',

@@ -18,7 +18,15 @@
         <tbody>
         {% for tema in temas %}
             <tr>
-                <td class="align-middle"><a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a></td>
+                <td class="align-middle">
+                    <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>
+                    <p>
+                        {% for emocion in tema.emociones %}
+                            <i class="{{ emocion.icono }}"></i>
+                        {% endfor %}
+                    </p>
+                </td>
+
                 <td class="align-middle text-center">{{ numRespuestas[loop.index - 1] }}</td>
                 <td>
                     <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">
