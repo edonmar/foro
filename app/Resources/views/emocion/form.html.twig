@@ -1,0 +1,25 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Datos de la emoción
+{% endblock %}
+
+{% block content %}
+    <h1>
+        {% if emocion.id %}
+            Modificar emoción {{ emocion.nombre }} <i class="{{ emocion.icono }}"></i>
+        {% else %}
+            Nueva emoción
+        {% endif %}
+    </h1>
+    {{ form_start(formulario) }}
+    {{ form_widget(formulario) }}
+    <a href="{{ path('emocion_listar') }}" class="btn btn-info"><i class="fa fa-arrow-left"></i> Volver al listado</a>
+    <button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Guardar cambios</button>
+    {% if emocion.id %}
+        <a href="{{ path('emocion_eliminar', {'id': emocion.id}) }}" class="btn btn-danger"><i class="fa fa-trash"></i> Eliminar emoción</a>
+    {% endif %}
+    {{ form_end(formulario) }}
+{% endblock %}
+
+

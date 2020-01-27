@@ -1,0 +1,30 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+    Listado de emociones
+{% endblock %}
+
+{% block content %}
+    <h1>Listado de emociones <a href="{{ path('emocion_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva emoción</a></h1>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Icono</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for emocion in emociones %}
+            <tr>
+                <td>{{ emocion.nombre }}</td>
+                <td>
+                    <i class="{{ emocion.icono }}"></i>
+                </td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('emocion_form', {'id': emocion.id}) }}">Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
