@@ -13,6 +13,12 @@
                 <td colspan="2">
                     <p>
                         <span>
+                            {% if tema.fijado == true %}
+                                <i class="fa fa-bookmark"></i>
+                            {% endif %}
+                            {% if tema.cerrado == true %}
+                                <i class="fa fa-comment-slash"></i>
+                            {% endif %}
                             <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a>
                              >>
                             <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>

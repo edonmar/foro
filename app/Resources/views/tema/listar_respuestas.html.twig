@@ -5,7 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1><a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a> » {{ tema.titulo }}</h1>
+    <h1>
+        {% if tema.fijado == true %}
+            <i class="fa fa-bookmark"></i>
+        {% endif %}
+        {% if tema.cerrado == true %}
+            <i class="fa fa-comment-slash"></i>
+        {% endif %}
+        <a href="{{ path('categoria_temas_listar', {'id': tema.categoria.id}) }}">{{ tema.categoria.nombre }}</a> » {{ tema.titulo }}
+    </h1>
     {% if tema.emociones|length > 0 %}
         <h2>
             {% for emocion in tema.emociones %}

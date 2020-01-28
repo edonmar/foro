@@ -19,6 +19,12 @@
         {% for tema in temas %}
             <tr>
                 <td class="align-middle">
+                    {% if tema.fijado == true %}
+                        <i class="fa fa-bookmark"></i>
+                    {% endif %}
+                    {% if tema.cerrado == true %}
+                        <i class="fa fa-comment-slash"></i>
+                    {% endif %}
                     <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>
                     <p>
                         {% for emocion in tema.emociones %}
