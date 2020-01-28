@@ -34,7 +34,7 @@ class EmocionController extends Controller
 
         $ultimaRespuesta = array();
         foreach ($temas as $tema) {
-            $ultimaRespuesta[] = $respuestaRepository->ultimaRespuesta($tema);
+            $ultimaRespuesta[] = $respuestaRepository->ultimaRespuestaTema($tema);
         }
 
         return $this->render('emocion/listar_temas.html.twig', [
