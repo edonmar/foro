@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -21,12 +22,15 @@ class Tema
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(max=200, maxMessage="El título debe tener un máximo de 200 caracteres")
      * @var string
      */
     private $titulo;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @var string
      */
     private $texto;
@@ -57,6 +61,7 @@ class Tema
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario", inversedBy="temas")
+     * @Assert\NotNull()
      * @var Usuario
      */
     private $usuario;

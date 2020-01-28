@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,6 +21,7 @@ class Respuesta
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      * @var string
      */
     private $texto;
@@ -38,6 +40,7 @@ class Respuesta
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario", inversedBy="respuestas")
+     * @Assert\NotNull()
      * @var Usuario
      */
     private $usuario;

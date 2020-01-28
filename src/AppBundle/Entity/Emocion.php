@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -20,12 +21,16 @@ class Emocion
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=20, minMessage="El nombre debe tener un mínimo de 2 caracteres", maxMessage="El nombre debe tener un máximo de 20 caracteres")
      * @var string
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=1, max=50, minMessage="El icono debe tener un mínimo de 1 carácter", maxMessage="El icono debe tener un máximo de 20 caracteres")
      * @var string
      */
     private $icono;

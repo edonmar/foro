@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -21,12 +22,16 @@ class Usuario
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=2, max=75, minMessage="El nombre debe tener un mínimo de 2 caracteres", maxMessage="El nombre debe tener un máximo de 75 caracteres")
      * @var string
      */
     private $nombre;
 
     /**
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=8, max=30, minMessage="La clave debe tener un mínimo de 8 caracteres", maxMessage="La clave debe tener un máximo de 30 caracteres")
      * @var string
      */
     private $clave;
