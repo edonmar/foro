@@ -21,7 +21,7 @@
                     <a href="{{ path('categoria_temas_listar', {'id': categoria.id}) }}">{{ categoria.nombre }}</a>
                 </td>
                 <td class="align-middle">
-                    <p>Temas: {{ numTemas[loop.index - 1] }}</p>
+                    <p>Temas: {{ categoria.temas|length }}</p>
                     <p>Respuestas: {{ numRespuestas[loop.index - 1] }}</p>
                 </td>
                 <td class="align-middle">

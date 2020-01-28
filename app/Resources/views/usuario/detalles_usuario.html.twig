@@ -19,11 +19,11 @@
                 Usuario normal
             {% endif %}
         </p>
-        <p>Temas creados: {{ temas|length }}</p>
-        <p>Respuestas escritas: {{ respuestas|length }}</p>
+        <p>Temas creados: {{ usuario.temas|length }}</p>
+        <p>Respuestas escritas: {{ usuario.respuestas|length }}</p>
     </div>
     <h2 class="mt-5">Temas creados por {{ usuario.nombre }}</h2>
-    {% for tema in temas %}
+    {% for tema in usuario.temas %}
         <table class="table table-bordered table-striped">
             <tbody>
             <tr>
@@ -66,7 +66,7 @@
         </table>
     {% endfor %}
     <h2 class="mt-5">Respuestas de {{ usuario.nombre }}</h2>
-    {% for respuesta in respuestas %}
+    {% for respuesta in usuario.respuestas %}
         <table class="table table-bordered table-striped">
             <tbody>
             <tr>

@@ -35,7 +35,7 @@
                     </p>
                 </td>
 
-                <td class="align-middle text-center">{{ numRespuestas[loop.index - 1] }}</td>
+                <td class="align-middle text-center">{{ tema.respuestas|length }}</td>
                 <td>
                     <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">
                         <p>{{ tema.usuario.nombre }}</p>

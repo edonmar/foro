@@ -20,14 +20,8 @@ class UsuarioController extends Controller
     {
         $usuarios = $usuarioRepository->findTodosOrdenados();
 
-        $numAportes = array();
-        foreach ($usuarios as $usuario) {
-            $numAportes[] = $temaRepository->contarPorUsuario($usuario) + $respuestaRepository->contarPorUsuario($usuario);
-        }
-
         return $this->render('usuario/listar.html.twig', [
-            'usuarios' => $usuarios,
-            'numAportes' => $numAportes
+            'usuarios' => $usuarios
         ]);
     }
 
@@ -36,12 +30,7 @@ class UsuarioController extends Controller
      */
     public function usuarioAction(TemaRepository $temaRepository, RespuestaRepository $respuestaRepository, Usuario $usuario)
     {
-        $temas = $temaRepository->findByUsuario($usuario);
-        $respuestas = $respuestaRepository->findByUsuario($usuario);
-
         return $this->render('usuario/detalles_usuario.html.twig', [
-            'temas' => $temas,
-            'respuestas' => $respuestas,
             'usuario' => $usuario
         ]);
     }

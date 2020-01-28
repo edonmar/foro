@@ -29,7 +29,7 @@
                     <td></td>
                 {% endif %}
                 <td>{{ usuario.fechaRegistro|date('d/m/Y') }}</td>
-                <td>{{ numAportes[loop.index - 1] }}</td>
+                <td>{{ usuario.temas|length + usuario.respuestas|length }}</td>
             </tr>
         {% endfor %}
         </tbody>

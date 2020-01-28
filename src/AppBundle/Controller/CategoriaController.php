@@ -20,21 +20,13 @@ class CategoriaController extends Controller
     {
         $categorias = $categoriaRepository->findAll();
 
-        $numTemas = array();
         $numRespuestas = array();
         foreach ($categorias as $categoria){
-            $sum = 0;
-            $temas = $temaRepository->findByCategoria($categoria);
-            $numTemas[] = $temaRepository->contarPorCategoria($categoria);
-            foreach ($temas as $tema){
-                $sum += $respuestaRepository->contarPorTema($tema);
-            }
-            $numRespuestas[] = $sum;
+            $numRespuestas[] = $respuestaRepository->contarPorCategoria($categoria);
         }
 
         return $this->render('categoria/listar.html.twig', [
             'categorias' => $categorias,
-            'numTemas' => $numTemas,
             'numRespuestas' => $numRespuestas
         ]);
     }
@@ -46,17 +38,14 @@ class CategoriaController extends Controller
     {
         $temas = $temaRepository->findByCategoria($categoria);
 
-        $numRespuestas = array();
         $ultimaRespuesta = array();
         foreach ($temas as $tema) {
-            $numRespuestas[] = $respuestaRepository->contarPorTema($tema);
             $ultimaRespuesta[] = $respuestaRepository->ultimaRespuesta($tema);
         }
 
         return $this->render('categoria/listar_temas.html.twig', [
             'temas' => $temas,
             'categoria' => $categoria,
-            'numRespuestas' => $numRespuestas,
             'ultimaRespuesta' => $ultimaRespuesta
         ]);
     }

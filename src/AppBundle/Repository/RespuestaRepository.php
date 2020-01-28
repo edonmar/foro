@@ -4,6 +4,7 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\Respuesta;
 use AppBundle\Entity\Tema;
+use AppBundle\Entity\Categoria;
 use AppBundle\Entity\Usuario;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -36,11 +37,12 @@ class RespuestaRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function contarPorTema(Tema $tema){
+    public function contarPorCategoria(Categoria $categoria){
         return $this->createQueryBuilder('r')
             ->select('count(r)')
-            ->where('r.tema = :tema')
-            ->setParameter('tema', $tema)
+            ->innerJoin('r.tema', 't')
+            ->where('t.categoria = :categoria')
+            ->setParameter('categoria', $categoria)
             ->getQuery()
             ->getSingleScalarResult();
     }
