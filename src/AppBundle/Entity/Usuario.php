@@ -4,13 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="usuario")
  */
-class Usuario
+class Usuario implements UserInterface
 {
     /**
      * @ORM\Id
@@ -212,5 +213,53 @@ class Usuario
     {
         $this->respuestas = $respuestas;
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        $roles = ['ROLE_USER'];
+
+        if ($this->isAdministrador())
+            $roles[] = 'ROLE_ADMINISTRADOR';
+        else
+            if ($this->isModerador())
+                $roles[] = 'ROLE_MODERADOR';
+
+        return $roles;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+        return $this->getClave();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return null;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->getNombre();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+
     }
 }
