@@ -9,6 +9,11 @@ security:
                 class: AppBundle\Entity\Usuario
                 property: nombre
 
+    role_hierarchy:
+        ROLE_ADMINISTRADOR: 'ROLE_MODERADOR'
+        ROLE_MODERADOR: 'ROLE_USUARIO'
+        ROLE_USUARIO: 'ROLE_USER'
+
     encoders:
         AppBundle\Entity\Usuario: plaintext
 
