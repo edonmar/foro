@@ -66,7 +66,7 @@ class CategoriaController extends Controller
     }
 
     /**
-     * @Route("/categoria/{id}", name="categoria_form", methods={"GET", "POST"})
+     * @Route("/categoria/{id}", name="categoria_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
      */
     public function formAction(Request $request, Categoria $categoria)
     {

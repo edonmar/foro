@@ -27,7 +27,7 @@ class RespuestaController extends Controller
     }
 
     /**
-     * @Route("/respuesta/{id}", name="respuesta_form", methods={"GET", "POST"})
+     * @Route("/respuesta/{id}", name="respuesta_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
      */
     public function formAction(Request $request, Respuesta $respuesta)
     {

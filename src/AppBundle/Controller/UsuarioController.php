@@ -49,7 +49,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * @Route("/usuario/form/{id}", name="usuario_form", methods={"GET", "POST"})
+     * @Route("/usuario/form/{id}", name="usuario_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
      */
     public function formAction(Request $request, Usuario $usuario)
     {

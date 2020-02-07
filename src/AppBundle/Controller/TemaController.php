@@ -52,7 +52,7 @@ class TemaController extends Controller
     }
 
     /**
-     * @Route("/tema/{id}", name="tema_form", methods={"GET", "POST"})
+     * @Route("/tema/{id}", name="tema_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
      */
     public function formAction(Request $request, Tema $tema)
     {

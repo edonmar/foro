@@ -57,7 +57,7 @@ class EmocionController extends Controller
     }
 
     /**
-     * @Route("/emocion/{id}", name="emocion_form", methods={"GET", "POST"})
+     * @Route("/emocion/{id}", name="emocion_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
      */
     public function formAction(Request $request, Emocion $emocion)
     {
