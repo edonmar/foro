@@ -16,7 +16,7 @@ class CategoriaController extends Controller
     /**
      * @Route("/categorias", name="categoria_listar")
      */
-    public function indexAction(CategoriaRepository $categoriaRepository, TemaRepository $temaRepository, RespuestaRepository $respuestaRepository)
+    public function indexAction(CategoriaRepository $categoriaRepository, RespuestaRepository $respuestaRepository)
     {
         $categorias = $categoriaRepository->findAll();
 
