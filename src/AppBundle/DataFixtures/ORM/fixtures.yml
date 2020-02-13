@@ -1,12 +1,26 @@
 AppBundle\Entity\Usuario:
-  administrador:
+  administrador_1:
+    nombre: administrador
+    clave: administrador
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: true
+    moderador: false
+
+  administrador_2:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
     clave: <password()>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: true
     moderador: false
 
-  moderador_{1..3}:
+  moderador_1:
+    nombre: moderador
+    clave: moderador
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: false
+    moderador: true
+
+  moderador_{2..3}:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
     clave: <password()>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
@@ -26,27 +40,49 @@ AppBundle\Entity\Categoria:
 
 AppBundle\Entity\Emocion:
   emocion_1:
-    nombre: 'Risa'
-    icono: 'fa fa-laugh-squint'
+    nombre: Risa
+    icono: fa fa-laugh-squint
 
   emocion_2:
-    nombre: 'Tristeza'
-    icono: 'fa fa-sad-tear'
+    nombre: Tristeza
+    icono: fa fa-sad-tear
 
   emocion_3:
-    nombre: 'Sorpresa'
-    icono: 'fa fa-surprise'
+    nombre: Sorpresa
+    icono: fa fa-surprise
 
   emocion_4:
-    nombre: 'Enfado'
-    icono: 'fa fa-angry'
+    nombre: Enfado
+    icono: fa fa-angry
 
   emocion_5:
-    nombre: 'Pregunta'
-    icono: 'fa fa-question-circle'
+    nombre: Pregunta
+    icono: fa fa-question-circle
 
 AppBundle\Entity\Tema:
-  tema_{1..40}:
+  tema_{1..7}:
+    titulo: <sentence($nbWords = 6, $variableNbWords = true)>
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editado: <boolean(15)>
+    fijado: <boolean(20)>
+    cerrado: <boolean(15)>
+    usuario: "@administrador*"
+    categoria: "@categoria*"
+    emociones: '2x @emocion*'
+
+  tema_{8..15}:
+    titulo: <sentence($nbWords = 6, $variableNbWords = true)>
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editado: <boolean(15)>
+    fijado: <boolean(20)>
+    cerrado: <boolean(15)>
+    usuario: "@moderador*"
+    categoria: "@categoria*"
+    emociones: '2x @emocion*'
+
+  tema_{16..40}:
     titulo: <sentence($nbWords = 6, $variableNbWords = true)>
     texto: <text($maxNbChars = 200)>
     fechaCreacion: <dateTimeBetween("-3 years", "now")>
@@ -58,9 +94,23 @@ AppBundle\Entity\Tema:
     emociones: '2x @emocion*'
 
 AppBundle\Entity\Respuesta:
-  respuesta_{1..300}:
+  respuesta_{1..290}:
     texto: <text($maxNbChars = 200)>
     fechaCreacion: <dateTimeBetween("-3 years", "now")>
     editada: <boolean(15)>
     tema: "@tema*"
     usuario: "@usuario*"
+
+  respuesta_{291..295}:
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editada: <boolean(15)>
+    tema: "@tema*"
+    usuario: "@administrador*"
+
+  respuesta_{296..300}:
+    texto: <text($maxNbChars = 200)>
+    fechaCreacion: <dateTimeBetween("-3 years", "now")>
+    editada: <boolean(15)>
+    tema: "@tema*"
+    usuario: "@moderador*"
