@@ -59,7 +59,9 @@ class TemaController extends Controller
         if($tema->getId())
             $tema->setEditado(true);
 
-        $form = $this->createForm(TemaType::class, $tema);
+        $form = $this->createForm(TemaType::class, $tema, [
+            'nuevo' => $tema->getId() === null
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

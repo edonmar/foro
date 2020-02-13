@@ -5,6 +5,7 @@ namespace AppBundle\Form\Type;
 use AppBundle\Entity\Tema;
 use AppBundle\Entity\Usuario;
 use AppBundle\Entity\Emocion;
+use AppBundle\Entity\Categoria;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,12 +43,21 @@ class TemaType extends AbstractType
                 'class' => Usuario::class,
                 'label' => 'Escrito por'
             ]);
+
+        if ($options['nuevo'] === false) {
+            $builder
+                ->add('categoria', EntityType::class, [
+                    'class' => Categoria::class,
+                    'label' => 'En la categoría',
+                ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Tema::class
+            'data_class' => Tema::class,
+            'nuevo' => false
         ]);
     }
 

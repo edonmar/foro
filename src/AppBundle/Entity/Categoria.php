@@ -42,6 +42,11 @@ class Categoria
         $this->temas = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return $this->getNombre();
+    }
+
     /**
      * @return int
      */
