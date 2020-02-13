@@ -12,14 +12,25 @@ use Symfony\Component\Routing\Annotation\Route;
 class UsuarioController extends Controller
 {
     /**
-     * @Route("/usuarios", name="usuario_listar")
+     * @Route("/usuarios/{filtro}", name="usuario_listar", requirements={"filtro": "0|1|2"})
      */
-    public function indexAction(UsuarioRepository $usuarioRepository)
+    public function indexAction(UsuarioRepository $usuarioRepository, $filtro = 0)
     {
-        $usuarios = $usuarioRepository->findTodosOrdenados();
+        switch ($filtro) {
+            case 0:
+                $usuarios = $usuarioRepository->findTodosOrdenados();
+                break;
+            case 1:
+                $usuarios = $usuarioRepository->findConPermisosOrdenados();
+                break;
+            case 2:
+                $usuarios = $usuarioRepository->findSinPermisosOrdenados();
+                break;
+        }
 
         return $this->render('usuario/listar.html.twig', [
-            'usuarios' => $usuarios
+            'usuarios' => $usuarios,
+            'filtro' => $filtro
         ]);
     }
 

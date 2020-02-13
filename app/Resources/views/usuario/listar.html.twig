@@ -6,6 +6,11 @@
 
 {% block content %}
     <h1>Listado de usuarios <a href="{{ path('usuario_nuevo') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo usuario</a></h1>
+    <div class="btn-group filtros">
+        <a href="{{ path('usuario_listar') }}" class="btn btn-{{ filtro == 0 ? "primary" : "info" }}">Todos</a>
+        <a href="{{ path('usuario_listar', {'filtro': 1}) }}" class="btn btn-{{ filtro == 1 ? "primary" : "info" }}">Con permisos</a>
+        <a href="{{ path('usuario_listar', {'filtro': 2}) }}" class="btn btn-{{ filtro == 2 ? "primary" : "info" }}">Sin permisos</a>
+    </div>
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>

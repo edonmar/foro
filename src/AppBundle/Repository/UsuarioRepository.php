@@ -22,4 +22,28 @@ class UsuarioRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findConPermisosOrdenados()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.administrador = true')
+            ->orWhere('u.moderador = true')
+            ->addOrderBy('u.administrador', 'desc')
+            ->addOrderBy('u.moderador', 'desc')
+            ->addOrderBy('u.nombre')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findSinPermisosOrdenados()
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.administrador = false')
+            ->andWhere('u.moderador = false')
+            ->addOrderBy('u.administrador', 'desc')
+            ->addOrderBy('u.moderador', 'desc')
+            ->addOrderBy('u.nombre')
+            ->getQuery()
+            ->getResult();
+    }
 }
