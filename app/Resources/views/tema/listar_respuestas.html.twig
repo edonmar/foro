@@ -53,11 +53,11 @@
                 </td>
             </tr>
             <tr>
-                <td style="width: 15%;">
+                <td class="mensajeDetallesAutor">
                     <a href="{{ path('usuario_detalles', {'id': respuesta.usuario.id}) }}">{{ respuesta.usuario.nombre }}</a>
                     <p>Aportes: {{ numAportesAutorRespuesta[loop.index - 1] }}</p>
                 </td>
-                <td style="width: 85%;">
+                <td class="mensajeContenido">
                     <p>{{ respuesta.texto }}</p>
                     {% if respuesta.editada == true %}
                         <p class="float-right text-secondary">Editada</p>
@@ -81,4 +81,3 @@
         </a>
     </p>
 {% endblock %}
-

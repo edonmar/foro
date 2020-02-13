@@ -5,3 +5,11 @@
 .filtros {
     padding-bottom: 1em;
 }
+
+.mensajeDetallesAutor {
+    width: 15%;
+}
+
+.mensajeContenido {
+    width: 85%;
+}
