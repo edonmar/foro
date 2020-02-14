@@ -35,9 +35,13 @@
                         </p>
                         <p>
                             Por:
-                            <a href="{{ path('usuario_detalles', {'id': ultimaRespuesta[loop.index - 1][0].usuario.id}) }}">
-                                {{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}
-                            </a>
+                            <a href="{{ path('usuario_detalles', {'id': ultimaRespuesta[loop.index - 1][0].usuario.id}) }}"
+                                {% if ultimaRespuesta[loop.index - 1][0].usuario.administrador == true %}
+                                    class="text-white bg-dark p-1 rounded"
+                                {% elseif ultimaRespuesta[loop.index - 1][0].usuario.moderador == true %}
+                                    class="text-white bg-secondary p-1 rounded"
+                                {% endif %}
+                            >{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</a>
                         </p>
                         <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
                     </td>

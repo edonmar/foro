@@ -25,7 +25,13 @@
     {% endif %}
     <div class="jumbotron">
         <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">
-            <span class="h3">{{ tema.usuario.nombre }}</span>
+            <span class="h3
+              {% if tema.usuario.administrador == true %}
+                  text-white bg-dark p-1 rounded
+              {% elseif tema.usuario.moderador == true %}
+                  text-white bg-secondary p-1 rounded
+              {% endif %}
+            ">{{ tema.usuario.nombre }}</span>
         </a>
         <span class="ml-3">Aportes: {{ numAportesAutorTema }}</span>
         <span class="float-right">
@@ -54,7 +60,13 @@
             </tr>
             <tr>
                 <td class="mensajeDetallesAutor">
-                    <a href="{{ path('usuario_detalles', {'id': respuesta.usuario.id}) }}">{{ respuesta.usuario.nombre }}</a>
+                    <a href="{{ path('usuario_detalles', {'id': respuesta.usuario.id}) }}"
+                        {% if respuesta.usuario.administrador == true %}
+                            class="text-white bg-dark p-1 rounded"
+                        {% elseif respuesta.usuario.moderador == true %}
+                            class="text-white bg-secondary p-1 rounded"
+                        {% endif %}
+                    >{{ respuesta.usuario.nombre }}</a>
                     <p>Aportes: {{ numAportesAutorRespuesta[loop.index - 1] }}</p>
                 </td>
                 <td class="mensajeContenido">

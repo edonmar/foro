@@ -35,7 +35,13 @@
                     {% endif %}
                     <span class="float-right">
                         Por
-                        <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}">{{ tema.usuario.nombre }}</a>
+                        <a href="{{ path('usuario_detalles', {'id': tema.usuario.id}) }}"
+                           {% if tema.usuario.administrador == true %}
+                               class="text-white bg-dark p-1 rounded"
+                           {% elseif tema.usuario.moderador == true %}
+                               class="text-white bg-secondary p-1 rounded"
+                           {% endif %}
+                        >{{ tema.usuario.nombre }}</a>
                         en la fecha
                         {{ tema.fechaCreacion|date('d/m/Y h:m') }}
                     </span>
