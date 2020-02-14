@@ -27,7 +27,14 @@ AppBundle\Entity\Usuario:
     administrador: false
     moderador: true
 
-  usuario_{1..20}:
+  usuario_{1}:
+    nombre: usuario
+    clave: usuario
+    fechaRegistro: <dateTimeBetween("-3 years", "now")>
+    administrador: false
+    moderador: false
+
+  usuario_{2..20}:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
     clave: <password()>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
