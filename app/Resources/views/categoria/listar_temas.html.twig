@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Listado de temas de {{ categoria.nombre }} <a href="{{ path('tema_nuevo', {'categoria': categoria.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo tema</a></h1>
+    <h1>Listado de temas de {{ categoria.nombre }} {% if is_granted('ROLE_USER') %}<a href="{{ path('tema_nuevo', {'categoria': categoria.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nuevo tema</a>{% endif %}</h1>
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>

@@ -5,12 +5,15 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Listado de emociones <a href="{{ path('emocion_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva emoción</a></h1>
+    <h1>Listado de emociones {% if is_granted('ROLE_ADMINISTRADOR') %}<a href="{{ path('emocion_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva emoción</a>{% endif %}</h1>
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
             <th>Nombre</th>
             <th>Icono</th>
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <th></th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -22,9 +25,11 @@
                 <td class="align-middle">
                     <i class="{{ emocion.icono }}"></i>
                 </td>
-                <td>
-                    <a class="btn btn-success" href="{{ path('emocion_form', {'id': emocion.id}) }}">Editar</a>
-                </td>
+                {% if is_granted('ROLE_ADMINISTRADOR') %}
+                    <td>
+                        <a class="btn btn-success" href="{{ path('emocion_form', {'id': emocion.id}) }}">Editar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

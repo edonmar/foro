@@ -11,9 +11,11 @@
             <li{% if nombre starts with 'categoria' %} class="active"{% endif %}>
                 <a class="nav-link" href="{{ path('categoria_listar') }}"><i class="fas fa-bars"></i> Categorías</a>
             </li>
-            <li{% if nombre starts with 'usuario' %} class="active"{% endif %}>
-                <a class="nav-link" href="{{ path('usuario_listar') }}"><i class="fas fa-user-friends"></i> Usuarios</a>
-            </li>
+            {% if is_granted('ROLE_USER') %}
+                <li{% if nombre starts with 'usuario' %} class="active"{% endif %}>
+                    <a class="nav-link" href="{{ path('usuario_listar') }}"><i class="fas fa-user-friends"></i> Usuarios</a>
+                </li>
+            {% endif %}
             <li{% if nombre starts with 'emocion' %} class="active"{% endif %}>
                 <a class="nav-link" href="{{ path('emocion_listar') }}"><i class="fas fa-smile"></i> Emociones</a>
             </li>

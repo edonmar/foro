@@ -7,6 +7,7 @@ use AppBundle\Form\Type\CategoriaType;
 use AppBundle\Repository\CategoriaRepository;
 use AppBundle\Repository\TemaRepository;
 use AppBundle\Repository\RespuestaRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -55,6 +56,7 @@ class CategoriaController extends Controller
 
     /**
      * @Route("/categoria/nueva", name="categoria_nueva", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function nuevaAction(Request $request)
     {
@@ -67,6 +69,7 @@ class CategoriaController extends Controller
 
     /**
      * @Route("/categoria/{id}", name="categoria_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function formAction(Request $request, Categoria $categoria)
     {
@@ -92,6 +95,7 @@ class CategoriaController extends Controller
 
     /**
      * @Route("/categoria/eliminar/{id}", name="categoria_eliminar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function eliminarAction(Request $request, Categoria $categoria)
     {

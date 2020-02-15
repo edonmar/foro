@@ -36,7 +36,7 @@
         <span class="ml-3">Aportes: {{ numAportesAutorTema }}</span>
         <span class="float-right">
             <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
-            <span class="ml-3"><a class="btn btn-success" href="{{ path('tema_form', {'id': tema.id}) }}">Editar</a></span>
+            <span class="ml-3">{% if is_granted('ROLE_USER') %}<a class="btn btn-success" href="{{ path('tema_form', {'id': tema.id}) }}">Editar</a>{% endif %}</span>
         </span>
         <hr/>
         <p>{{ tema.texto }}</p>
@@ -44,9 +44,11 @@
             <p class="float-right text-secondary">Editado</p>
         {% endif %}
     </div>
-    <div class="mb-4">
-        <a href="{{ path('respuesta_nueva', {'tema': tema.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva respuesta</a>
-    </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="mb-4">
+            <a href="{{ path('respuesta_nueva', {'tema': tema.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva respuesta</a>
+        </div>
+    {% endif %}
     {% for respuesta in respuestas %}
         <table class="table table-bordered table-striped">
             <tbody>
@@ -55,7 +57,9 @@
                     {{ respuesta.fechaCreacion|date('d/m/Y h:m') }}
                 </td>
                 <td>
-                    <span class="float-right"><a class="btn btn-success" href="{{ path('respuesta_form', {'id': respuesta.id}) }}">Editar</a></span>
+                    {% if is_granted('ROLE_USER') %}
+                        <span class="float-right"><a class="btn btn-success" href="{{ path('respuesta_form', {'id': respuesta.id}) }}">Editar</a></span>
+                    {% endif %}
                 </td>
             </tr>
             <tr>

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Usuario;
 use AppBundle\Form\Type\UsuarioType;
 use AppBundle\Repository\UsuarioRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ class UsuarioController extends Controller
 {
     /**
      * @Route("/usuarios/{filtro}", name="usuario_listar", requirements={"filtro": "0|1|2"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function indexAction(UsuarioRepository $usuarioRepository, $filtro = 0)
     {
@@ -36,6 +38,7 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/usuario/detalles/{id}", name="usuario_detalles")
+     * @Security("is_granted('ROLE_USER')")
      */
     public function usuarioAction(Usuario $usuario)
     {
@@ -59,6 +62,7 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/usuario/form/{id}", name="usuario_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function formAction(Request $request, Usuario $usuario)
     {
@@ -84,6 +88,7 @@ class UsuarioController extends Controller
 
     /**
      * @Route("/usuario/eliminar/{id}", name="usuario_eliminar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function eliminarAction(Request $request, Usuario $usuario)
     {

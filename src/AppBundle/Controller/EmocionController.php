@@ -7,6 +7,7 @@ use AppBundle\Form\Type\EmocionType;
 use AppBundle\Repository\EmocionRepository;
 use AppBundle\Repository\TemaRepository;
 use AppBundle\Repository\RespuestaRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,6 +47,7 @@ class EmocionController extends Controller
 
     /**
      * @Route("/emocion/nueva", name="emocion_nueva", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function nuevaAction(Request $request)
     {
@@ -58,6 +60,7 @@ class EmocionController extends Controller
 
     /**
      * @Route("/emocion/{id}", name="emocion_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function formAction(Request $request, Emocion $emocion)
     {
@@ -83,6 +86,7 @@ class EmocionController extends Controller
 
     /**
      * @Route("/emocion/eliminar/{id}", name="emocion_eliminar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_ADMINISTRADOR')")
      */
     public function eliminarAction(Request $request, Emocion $emocion)
     {

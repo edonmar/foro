@@ -7,6 +7,7 @@ use AppBundle\Entity\Categoria;
 use AppBundle\Form\Type\TemaType;
 use AppBundle\Repository\TemaRepository;
 use AppBundle\Repository\RespuestaRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +39,7 @@ class TemaController extends Controller
 
     /**
      * @Route("/tema/{categoria}/nuevo", name="tema_nuevo", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function nuevaAction(Request $request, Categoria $categoria)
     {
@@ -53,6 +55,7 @@ class TemaController extends Controller
 
     /**
      * @Route("/tema/{id}", name="tema_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function formAction(Request $request, Tema $tema)
     {
@@ -92,6 +95,7 @@ class TemaController extends Controller
 
     /**
      * @Route("/tema/eliminar/{id}", name="tema_eliminar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function eliminarAction(Request $request, Tema $tema)
     {

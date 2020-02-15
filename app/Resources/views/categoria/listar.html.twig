@@ -5,14 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Categorías <a href="{{ path('categoria_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva categoría</a></h1>
+    <h1>Categorías {% if is_granted('ROLE_ADMINISTRADOR') %}<a href="{{ path('categoria_nueva') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva categoría</a>{% endif %}</h1>
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
             <th class="align-middle">Nombre</th>
             <th class="align-middle">Contenido</th>
             <th class="align-middle">Número de respuestas</th>
-            <th></th>
+            {% if is_granted('ROLE_ADMINISTRADOR') %}
+                <th></th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -48,9 +50,11 @@
                 {% else %}
                     <td class="align-middle">No hay respuestas</td>
                 {% endif %}
-                <td class="align-middle">
-                    <a class="btn btn-success" href="{{ path('categoria_form', {'id': categoria.id}) }}">Editar</a>
-                </td>
+                {% if is_granted('ROLE_ADMINISTRADOR') %}
+                    <td class="align-middle">
+                        <a class="btn btn-success" href="{{ path('categoria_form', {'id': categoria.id}) }}">Editar</a>
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>

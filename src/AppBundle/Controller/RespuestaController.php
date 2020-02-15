@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Respuesta;
 use AppBundle\Entity\Tema;
 use AppBundle\Form\Type\RespuestaType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,6 +14,7 @@ class RespuestaController extends Controller
 {
     /**
      * @Route("/respuesta/{tema}/nueva", name="respuesta_nueva", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function nuevaAction(Request $request, Tema $tema)
     {
@@ -28,6 +30,7 @@ class RespuestaController extends Controller
 
     /**
      * @Route("/respuesta/{id}", name="respuesta_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function formAction(Request $request, Respuesta $respuesta)
     {
@@ -64,6 +67,7 @@ class RespuestaController extends Controller
 
     /**
      * @Route("/respuesta/eliminar/{id}", name="respuesta_eliminar", methods={"GET", "POST"})
+     * @Security("is_granted('ROLE_USER')")
      */
     public function eliminarAction(Request $request, Respuesta $respuesta)
     {
