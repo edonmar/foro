@@ -56,13 +56,22 @@ class TemaController extends Controller
      */
     public function formAction(Request $request, Tema $tema)
     {
-        if($tema->getId())
-            $tema->setEditado(true);
+        if($tema->getId()) {
+            $nuevo = false;
+            $tituloAntiguo = $tema->getTitulo();
+            $textoAntiguo = $tema->getTexto();
+        }
+        else
+            $nuevo = true;
 
         $form = $this->createForm(TemaType::class, $tema, [
             'nuevo' => $tema->getId() === null
         ]);
         $form->handleRequest($request);
+
+        if($nuevo == false)
+            if($tema->getTitulo() != $tituloAntiguo || $tema->getTexto() != $textoAntiguo)
+                $tema->setEditado(true);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {

@@ -31,11 +31,19 @@ class RespuestaController extends Controller
      */
     public function formAction(Request $request, Respuesta $respuesta)
     {
-        if($respuesta->getId())
-            $respuesta->setEditada(true);
+        if($respuesta->getId()){
+            $nueva = false;
+            $textoAntiguo = $respuesta->getTexto();
+        }
+        else
+            $nueva = true;
 
         $form = $this->createForm(RespuestaType::class, $respuesta);
         $form->handleRequest($request);
+
+        if($nueva == false)
+            if($respuesta->getTexto() != $textoAntiguo)
+                $respuesta->setEditada(true);
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
