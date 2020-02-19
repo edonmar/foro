@@ -39,7 +39,7 @@
                          >>
                         <a href="{{ path('tema_respuestas_listar', {'id': tema.id}) }}">{{ tema.titulo }}</a>
                     </span>
-                    <span class="float-right">En la fecha: {{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+                    <span class="float-right">En la fecha: {{ tema.fechaCreacion|date('d/m/Y H:i') }}</span>
                     <p>
                         {% for emocion in tema.emociones %}
                             <a href="{{ path('emocion_temas_listar', {'id': emocion.id}) }}">
@@ -72,7 +72,7 @@
             <tr>
                 <td colspan="2">
                     <span>En el tema: <a href="{{ path('tema_respuestas_listar', {'id': respuesta.tema.id}) }}">{{ respuesta.tema.titulo }}</a></span>
-                    <span class="float-right">En la fecha: {{ respuesta.fechaCreacion|date('d/m/Y h:m') }}</span>
+                    <span class="float-right">En la fecha: {{ respuesta.fechaCreacion|date('d/m/Y H:i') }}</span>
                 </td>
             </tr>
             <tr>

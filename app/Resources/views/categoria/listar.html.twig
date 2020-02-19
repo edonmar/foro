@@ -45,7 +45,7 @@
                                 {% endif %}
                             >{{ ultimaRespuesta[loop.index - 1][0].usuario.nombre }}</a>
                         </p>
-                        <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y h:m') }}</p>
+                        <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y H:i') }}</p>
                     </td>
                 {% else %}
                     <td class="align-middle">No hay respuestas</td>

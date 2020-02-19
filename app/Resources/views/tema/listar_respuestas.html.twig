@@ -35,7 +35,7 @@
         </a>
         <span class="ml-3">Aportes: {{ numAportesAutorTema }}</span>
         <span class="float-right">
-            <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y h:m') }}</span>
+            <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y H:i') }}</span>
             <span class="ml-3">{% if is_granted('ROLE_USER') %}<a class="btn btn-success" href="{{ path('tema_form', {'id': tema.id}) }}">Editar</a>{% endif %}</span>
         </span>
         <hr/>
@@ -54,7 +54,7 @@
             <tbody>
             <tr>
                 <td class="align-middle">
-                    {{ respuesta.fechaCreacion|date('d/m/Y h:m') }}
+                    {{ respuesta.fechaCreacion|date('d/m/Y H:i') }}
                 </td>
                 <td>
                     {% if is_granted('ROLE_USER') %}
