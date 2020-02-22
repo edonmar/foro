@@ -18,23 +18,31 @@
             <th>Rol</th>
             <th>Fecha de registro</th>
             <th>Aportes</th>
+            {% if is_granted('ROLE_MODERADOR') %}
+                <th></th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
         {% for usuario in usuarios %}
             <tr>
-                <td>
+                <td class="align-middle">
                     <a href="{{ path('usuario_detalles', {'id': usuario.id}) }}">{{ usuario.nombre }}</a>
                 </td>
-                {% if usuario.administrador == true %}
-                    <td>Administrador</td>
-                {% elseif usuario.moderador == true %}
-                    <td>Moderador</td>
-                {% else %}
-                    <td></td>
+                <td class="align-middle">
+                    {% if usuario.administrador == true %}
+                        Administrador
+                    {% elseif usuario.moderador == true %}
+                        Moderador
+                    {% endif %}
+                </td>
+                <td class="align-middle">{{ usuario.fechaRegistro|date('d/m/Y') }}</td>
+                <td class="align-middle">{{ usuario.temas|length + usuario.respuestas|length }}</td>
+                {% if is_granted('ROLE_MODERADOR') %}
+                    <td class="text-center">
+                        <a class="btn btn-success" href="{{ path('usuario_form', {'id': usuario.id}) }}">Editar</a>
+                    </td>
                 {% endif %}
-                <td>{{ usuario.fechaRegistro|date('d/m/Y') }}</td>
-                <td>{{ usuario.temas|length + usuario.respuestas|length }}</td>
             </tr>
         {% endfor %}
         </tbody>
