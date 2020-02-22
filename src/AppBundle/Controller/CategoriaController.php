@@ -17,21 +17,24 @@ class CategoriaController extends Controller
     /**
      * @Route("/categorias", name="categoria_listar")
      */
-    public function indexAction(CategoriaRepository $categoriaRepository, RespuestaRepository $respuestaRepository)
+    public function indexAction(CategoriaRepository $categoriaRepository, RespuestaRepository $respuestaRepository, TemaRepository $temaRepository)
     {
         $categorias = $categoriaRepository->findAll();
 
         $numRespuestas = array();
         $ultimaRespuesta = array();
+        $ultimoTema = array();
         foreach ($categorias as $categoria){
             $numRespuestas[] = $respuestaRepository->contarPorCategoria($categoria);
             $ultimaRespuesta[] = $respuestaRepository->ultimaRespuestaCategoria(($categoria));
+            $ultimoTema[] = $temaRepository->ultimoTemaCategoria(($categoria));
         }
 
         return $this->render('categoria/listar.html.twig', [
             'categorias' => $categorias,
             'numRespuestas' => $numRespuestas,
-            'ultimaRespuesta' => $ultimaRespuesta
+            'ultimaRespuesta' => $ultimaRespuesta,
+            'ultimoTema' => $ultimoTema
         ]);
     }
 

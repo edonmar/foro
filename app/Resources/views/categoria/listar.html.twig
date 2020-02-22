@@ -11,7 +11,7 @@
         <tr>
             <th class="align-middle">Nombre</th>
             <th class="align-middle">Contenido</th>
-            <th class="align-middle">Número de respuestas</th>
+            <th class="align-middle">Último aporte</th>
             {% if is_granted('ROLE_ADMINISTRADOR') %}
                 <th></th>
             {% endif %}
@@ -28,9 +28,21 @@
                     <p>Respuestas: {{ numRespuestas[loop.index - 1] }}</p>
                 </td>
                 {% if ultimaRespuesta[loop.index - 1]|length != 0 %}
+                    {% if ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y H:i') > ultimoTema[loop.index - 1][0].fechaCreacion|date('d/m/Y H:i') %}
+                        {% set ultimoAporte = "respuesta" %}
+                    {% else %}
+                        {% set ultimoAporte = "tema" %}
+                    {% endif %}
+                {% elseif ultimoTema[loop.index - 1]|length != 0 %}
+                    {% set ultimoAporte = "tema" %}
+                {% else %}
+                    {% set ultimoAporte = "vacio" %}
+                {% endif %}
+
+                {% if ultimoAporte == "respuesta" %}
                     <td>
                         <p>
-                            En el tema:
+                            Respuesta en el tema:
                             <a href="{{ path('tema_respuestas_listar', {'id': ultimaRespuesta[loop.index - 1][0].tema.id}) }}">
                                 {{ ultimaRespuesta[loop.index - 1][0].tema.titulo }}
                             </a>
@@ -47,8 +59,28 @@
                         </p>
                         <p>{{ ultimaRespuesta[loop.index - 1][0].fechaCreacion|date('d/m/Y H:i') }}</p>
                     </td>
+                {% elseif ultimoAporte == "tema" %}
+                    <td>
+                        <p>
+                            El tema:
+                            <a href="{{ path('tema_respuestas_listar', {'id': ultimoTema[loop.index - 1][0].id}) }}">
+                                {{ ultimoTema[loop.index - 1][0].titulo }}
+                            </a>
+                        </p>
+                        <p>
+                            Por:
+                            <a href="{{ path('usuario_detalles', {'id': ultimoTema[loop.index - 1][0].usuario.id}) }}"
+                                    {% if ultimoTema[loop.index - 1][0].usuario.administrador == true %}
+                                        class="text-white bg-dark p-1 rounded"
+                                    {% elseif ultimoTema[loop.index - 1][0].usuario.moderador == true %}
+                                        class="text-white bg-secondary p-1 rounded"
+                                    {% endif %}
+                            >{{ ultimoTema[loop.index - 1][0].usuario.nombre }}</a>
+                        </p>
+                        <p>{{ ultimoTema[loop.index - 1][0].fechaCreacion|date('d/m/Y H:i') }}</p>
+                    </td>
                 {% else %}
-                    <td class="align-middle">No hay respuestas</td>
+                    <td class="align-middle">No hay aportes</td>
                 {% endif %}
                 {% if is_granted('ROLE_ADMINISTRADOR') %}
                     <td class="align-middle">

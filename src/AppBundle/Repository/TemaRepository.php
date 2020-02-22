@@ -47,4 +47,15 @@ class TemaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    public function ultimoTemaCategoria(Categoria $categoria){
+        return $this->createQueryBuilder('t')
+            ->select('t')
+            ->where('t.categoria = :categoria')
+            ->setParameter('categoria', $categoria)
+            ->orderBy('t.id', 'desc')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
 }
