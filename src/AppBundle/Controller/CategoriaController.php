@@ -47,6 +47,34 @@ class CategoriaController extends Controller
             $ultimaRespuesta[] = $respuestaRepository->ultimaRespuestaTema($tema);
         }
 
+        // Ordenar temas por fecha de la última respuesta manteniendo la ordenación por fijados
+        // Si un tema no tiene respuestas, se toma en cuenta la fecha de creación del tema
+        for($i=1; $i<count($ultimaRespuesta); $i++){
+            for($j=0; $j<count($ultimaRespuesta) - $i; $j++){
+                if(count($ultimaRespuesta[$j]) > 0)
+                    $fechaA = $ultimaRespuesta[$j][0]->getFechaCreacion();
+                else
+                    $fechaA = $temas[$j]->getFechaCreacion();
+
+                if(count($ultimaRespuesta[$j + 1]) > 0)
+                    $fechaB = $ultimaRespuesta[$j + 1][0]->getFechaCreacion();
+                else
+                    $fechaB = $temas[$j + 1]->getFechaCreacion();
+
+                if($fechaA < $fechaB){
+                    if($temas[$j]->isFijado() == $temas[$j + 1]->isFijado()){
+                        $aux = $ultimaRespuesta[$j + 1];
+                        $ultimaRespuesta[$j + 1] = $ultimaRespuesta[$j];
+                        $ultimaRespuesta[$j] = $aux;
+
+                        $aux = $temas[$j + 1];
+                        $temas[$j + 1] = $temas[$j];
+                        $temas[$j] = $aux;
+                    }
+                }
+            }
+        }
+
         return $this->render('categoria/listar_temas.html.twig', [
             'temas' => $temas,
             'categoria' => $categoria,
