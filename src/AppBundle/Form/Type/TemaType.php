@@ -38,10 +38,6 @@ class TemaType extends AbstractType
             ->add('cerrado', CheckboxType::class, [
                 'label' => '¿Tema cerrado?',
                 'required' => false
-            ])
-            ->add('usuario', EntityType::class, [
-                'class' => Usuario::class,
-                'label' => 'Escrito por'
             ]);
 
         if ($options['nuevo'] === false) {

@@ -17,11 +17,7 @@ class RespuestaType extends AbstractType
         $builder
             ->add('texto', TextareaType::class, [
                 'label' => 'Texto'
-            ])
-            ->add('usuario', EntityType::class, [
-                'class' => Usuario::class,
-                'label' => 'Escrita por'
-            ]);;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

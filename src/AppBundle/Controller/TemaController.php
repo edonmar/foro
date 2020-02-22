@@ -47,6 +47,7 @@ class TemaController extends Controller
         $nuevoTema->setFechaCreacion(new \DateTime());
         $nuevoTema->setEditado(false);
         $nuevoTema->setCategoria($categoria);
+        $nuevoTema->setUsuario($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($nuevoTema);
 

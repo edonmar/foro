@@ -22,6 +22,7 @@ class RespuestaController extends Controller
         $nuevaRespuesta->setFechaCreacion(new \DateTime());
         $nuevaRespuesta->setEditada(false);
         $nuevaRespuesta->setTema($tema);
+        $nuevaRespuesta->setUsuario($this->getUser());
         $em = $this->getDoctrine()->getManager();
         $em->persist($nuevaRespuesta);
 
