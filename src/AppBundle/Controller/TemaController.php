@@ -56,7 +56,7 @@ class TemaController extends Controller
 
     /**
      * @Route("/tema/{id}", name="tema_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('TEMA_EDITAR')")
      */
     public function formAction(Request $request, Tema $tema)
     {
