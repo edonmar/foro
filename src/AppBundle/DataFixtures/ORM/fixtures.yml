@@ -1,42 +1,42 @@
 AppBundle\Entity\Usuario:
   administrador_1:
     nombre: administrador
-    clave: <codificaClave('administrador')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: true
     moderador: false
 
   administrador_2:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
-    clave: <codificaClave('administrador')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: true
     moderador: false
 
   moderador_1:
     nombre: moderador
-    clave: <codificaClave('moderador')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: false
     moderador: true
 
   moderador_{2..3}:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
-    clave: <codificaClave('moderador')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: false
     moderador: true
 
   usuario_{1}:
     nombre: usuario
-    clave: <codificaClave('usuario')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: false
     moderador: false
 
   usuario_{2..20}:
     nombre: '<es_ES:firstName()> <es_ES:lastName()> <es_ES:lastName()>'
-    clave: <codificaClave('usuario')>
+    clave: <codificaClave('password')>
     fechaRegistro: <dateTimeBetween("-3 years", "now")>
     administrador: false
     moderador: false
