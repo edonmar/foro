@@ -35,7 +35,7 @@
         <span class="ml-3">Aportes: {{ numAportesAutorTema }}</span>
         <span class="float-right">
             <span class="h4 pl-4">{{ tema.fechaCreacion|date('d/m/Y H:i') }}</span>
-            {% if is_granted('TEMA_EDITAR') %}
+            {% if is_granted('TEMA_EDITAR', tema) %}
                 <span class="ml-3"><a class="btn btn-success" href="{{ path('tema_form', {'id': tema.id}) }}">Editar</a></span>
             {% endif %}
         </span>
