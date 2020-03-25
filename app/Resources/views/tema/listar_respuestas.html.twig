@@ -58,7 +58,7 @@
                     {{ respuesta.fechaCreacion|date('d/m/Y H:i') }}
                 </td>
                 <td>
-                    {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('RESPUESTA_EDITAR', respuesta) %}
                         <span class="float-right"><a class="btn btn-success" href="{{ path('respuesta_form', {'id': respuesta.id}) }}">Editar</a></span>
                     {% endif %}
                 </td>

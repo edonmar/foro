@@ -31,7 +31,7 @@ class RespuestaController extends Controller
 
     /**
      * @Route("/respuesta/{id}", name="respuesta_form", requirements={"id"="\d+"}, methods={"GET", "POST"})
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('RESPUESTA_EDITAR', respuesta)")
      */
     public function formAction(Request $request, Respuesta $respuesta)
     {
