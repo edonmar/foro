@@ -45,7 +45,7 @@
             <p class="float-right text-secondary">Editado</p>
         {% endif %}
     </div>
-    {% if is_granted('ROLE_USER') %}
+    {% if is_granted('TEMA_CREAR_RESPUESTA', tema) %}
         <div class="mb-4">
             <a href="{{ path('respuesta_nueva', {'tema': tema.id}) }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva respuesta</a>
         </div>

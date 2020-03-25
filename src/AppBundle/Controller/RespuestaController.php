@@ -14,7 +14,7 @@ class RespuestaController extends Controller
 {
     /**
      * @Route("/respuesta/{tema}/nueva", name="respuesta_nueva", methods={"GET", "POST"})
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('TEMA_CREAR_RESPUESTA', tema)")
      */
     public function nuevaAction(Request $request, Tema $tema)
     {

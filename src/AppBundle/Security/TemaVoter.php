@@ -12,6 +12,7 @@ class TemaVoter extends Voter
 {
 
     const TEMA_EDITAR = 'TEMA_EDITAR';
+    const TEMA_CREAR_RESPUESTA = 'TEMA_CREAR_RESPUESTA';
 
     private $accessDecisionManager;
 
@@ -30,7 +31,8 @@ class TemaVoter extends Voter
     protected function supports($attribute, $subject)
     {
         if (in_array($attribute, [
-            self::TEMA_EDITAR
+            self::TEMA_EDITAR,
+            self::TEMA_CREAR_RESPUESTA
         ], true)) {
             return true;
         }
@@ -79,6 +81,20 @@ class TemaVoter extends Voter
                             return true;
                         }
                     }
+                }
+
+                return false;
+
+            case self::TEMA_CREAR_RESPUESTA:
+                // Se puede crear una respuesta en el tema si se cumple alguna de estas condiciones:
+                // 1. El usuario tiene el rol de ROLE_MODERADOR
+                if ($this->accessDecisionManager->decide($token, ['ROLE_MODERADOR'])) {
+                    return true;
+                }
+
+                // 2. El tema no está cerrado
+                if($subject->isCerrado() == false) {
+                    return true;
                 }
 
                 return false;
