@@ -32,7 +32,7 @@ class Usuario implements UserInterface
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
-     * @Assert\Length(min=8, max=30, minMessage="La clave debe tener un mínimo de 8 caracteres", maxMessage="La clave debe tener un máximo de 30 caracteres")
+     * @Assert\Length(min=8, minMessage="La clave debe tener un mínimo de 8 caracteres")
      * @var string
      */
     private $clave;
