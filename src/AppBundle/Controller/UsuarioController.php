@@ -59,6 +59,8 @@ class UsuarioController extends Controller
     {
         $nuevoUsuario = new Usuario();
         $nuevoUsuario->setFechaRegistro(new \DateTime());
+        $nuevoUsuario->setAdministrador(false);
+        $nuevoUsuario->setModerador(false);
         $em = $this->getDoctrine()->getManager();
         $em->persist($nuevoUsuario);
 
@@ -71,7 +73,9 @@ class UsuarioController extends Controller
      */
     public function formAction(Request $request, Usuario $usuario)
     {
-        $form = $this->createForm(UsuarioType::class, $usuario);
+        $form = $this->createForm(UsuarioType::class, $usuario, [
+            'nuevo' => $usuario->getId() === null
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
